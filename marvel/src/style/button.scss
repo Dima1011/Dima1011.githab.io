@@ -1,0 +1,85 @@
+@import './variables';
+
+.button {
+    min-width: 101px;
+    background-color: transparent;
+    border: none;
+    transition: 0.3s transform;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    .inner {
+        position: relative;
+        padding: 11px 18px;
+        height: 38px;
+        background-color: $main-color;
+        line-height: 18px;
+        transition: none;
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0px;
+            transition: none;
+            border-color: $main-color #fff;
+            border-style: solid;
+            border-width: 0 0 10px 10px;
+        }
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: 0px;
+            transform: rotate(180deg);
+            transition: none;
+            border-color: $main-color #fff;
+            border-style: solid;
+            border-width: 0px 0px 10px 10px;
+        } 
+    }
+    &__main, &__secondary {
+        &:hover {
+            color: #fff;
+        }
+    }
+    &__secondary {
+        .inner {
+            background-color: $grey;
+            &::before {
+                border-color: $grey #fff;
+                transition: none;
+            }
+            &::after {
+                border-color: $grey #fff; 
+                transition: none;
+            }
+        }
+    }
+    //&::before {
+    //    content: '';
+    //    display: block;
+    //    height: 10px;
+    //    margin-left: 10px;
+    //    transition: none;
+    //}
+    //&::after {
+    //    content: '';
+    //    display: block;
+    //    height: 10px;
+    //    margin-right: 10px;
+    //    transition: none;
+    //}
+    //&.button__main::before, &.button__main::after {
+    //    background-color: $main-color;
+    //}
+    //&.button__secondary::before, &.button__secondary::after {
+    //    background-color: $grey;
+    //}
+    &:hover {
+        transform: translateY(-4px);
+    }
+}
