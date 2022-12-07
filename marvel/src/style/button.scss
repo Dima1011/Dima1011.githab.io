@@ -10,10 +10,14 @@
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
+    &__long {
+        display: block;
+        width: 170px;
+        margin: 45px auto 0 auto;
+    }
     .inner {
         position: relative;
-        padding: 11px 18px;
-        height: 38px;
+        padding: 0px 18px;
         background-color: $main-color;
         line-height: 18px;
         transition: none;
@@ -22,9 +26,9 @@
             display: block;
             position: absolute;
             left: 0;
-            top: 0px;
+            top: -10px;
             transition: none;
-            border-color: $main-color #fff;
+            border-color: $main-color transparent;
             border-style: solid;
             border-width: 0 0 10px 10px;
         }
@@ -33,10 +37,10 @@
             display: block;
             position: absolute;
             right: 0;
-            bottom: 0px;
+            bottom: -10px;
             transform: rotate(180deg);
             transition: none;
-            border-color: $main-color #fff;
+            border-color: $main-color transparent;
             border-style: solid;
             border-width: 0px 0px 10px 10px;
         } 
@@ -50,36 +54,39 @@
         .inner {
             background-color: $grey;
             &::before {
-                border-color: $grey #fff;
+                border-color: $grey transparent;
                 transition: none;
             }
             &::after {
-                border-color: $grey #fff; 
+                border-color: $grey transparent; 
                 transition: none;
             }
         }
     }
-    //&::before {
-    //    content: '';
-    //    display: block;
-    //    height: 10px;
-    //    margin-left: 10px;
-    //    transition: none;
-    //}
-    //&::after {
-    //    content: '';
-    //    display: block;
-    //    height: 10px;
-    //    margin-right: 10px;
-    //    transition: none;
-    //}
-    //&.button__main::before, &.button__main::after {
-    //    background-color: $main-color;
-    //}
-    //&.button__secondary::before, &.button__secondary::after {
-    //    background-color: $grey;
-    //}
+    &::before {
+        content: '';
+        display: block;
+        height: 10px;
+        margin-left: 10px;
+        transition: none;
+    }
+    &::after {
+        content: '';
+        display: block;
+        height: 10px;
+        margin-right: 10px;
+        transition: none;
+    }
+    &.button__main::before, &.button__main::after {
+        background-color: $main-color;
+    }
+    &.button__secondary::before, &.button__secondary::after {
+        background-color: $grey;
+    }
     &:hover {
         transform: translateY(-4px);
+    }
+    &:disabled {
+        filter: grayscale(.5);
     }
 }
