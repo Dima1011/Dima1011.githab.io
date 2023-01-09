@@ -13,11 +13,11 @@ const RandomChar = () => {
 
     useEffect(() => {
         updateChar();
-        const timerId = setInterval(updateChar, 60000);
+        //const timerId = setInterval(updateChar, 60000);
 
-        return () => {
-            clearInterval(timerId)
-        }
+        //return () => {
+        //    clearInterval(timerId)
+        //}
     }, [])
 
     const onCharLoaded = (char) => {
@@ -59,7 +59,12 @@ const RandomChar = () => {
 
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki} = char;
-    const newName = name.length > 20 ? name.slice(0, 20) + '...' : name;
+    console.log(name);
+    let newName = name;
+    if (name !== undefined) {
+        newName = name.length > 20 ? name.slice(0, 20) + '...' : name;
+    }
+    //const newName = name.length > 20 ? name.slice(0, 20) + '...' : name;
 
     let imgStyle = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
