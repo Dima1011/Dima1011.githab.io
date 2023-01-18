@@ -5,7 +5,7 @@ const useMarvelService = () => {
 
     const _apiBase = 'https://gateway.marvel.com:443/v1/public/';
     const _apiKey = 'apikey=38d7b56f0daae0a6c8e40e6883e897e4';
-    //const _baseOffset = 210;
+    const _baseOffset = 210;
 
     //getResource = async (url) => {
     //    let res = await fetch(url);
@@ -17,15 +17,15 @@ const useMarvelService = () => {
     //    return await res.json();
     //}
 
-    //const getAllCharacters = async (offset = _baseOffset) => {
-    //    const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`);
-    //    return res.data.results.map(_transformCharacter);
-    //}
+    const getAllCharacters = async (offset = _baseOffset) => {
+        const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`);
+        return res.data.results.map(_transformCharacter);
+    }
 
-    //const getCharacter = async (id) => {
-    //    const res = await request(`${_apiBase}characters/${id}?${_apiKey}`);
-    //    return _transformCharacter(res.data.results[0]);
-    //}
+    const getCharacter = async (id) => {
+        const res = await request(`${_apiBase}characters/${id}?${_apiKey}`);
+        return _transformCharacter(res.data.results[0]);
+    }
 
     const getAllComics = async (offset = 0) => {
         const res = await request(`${_apiBase}comics?limit=8&offset=${offset}&${_apiKey}`);
@@ -37,17 +37,17 @@ const useMarvelService = () => {
         return _transformComics(res.data.results[0]);
     }
 
-    //const _transformCharacter = (char) => {
-    //    return {
-    //        id: char.id,
-    //        name: char.name.length > 50 ? char.name.slice(0, 50) + '...' : char.name,
-    //        description: char.description ? char.description.length > 230 ? char.description.slice(0, 230) + '...' : char.description : 'No description',
-    //        thumbnail: char.thumbnail.path + '.' + char.thumbnail.extension,
-    //        homepage: char.urls[0].url,
-    //        wiki: char.urls[1].url,
-    //        comics: char.comics.items//.length === 0 ? char.comics.items = ['No description'] : char.comics.items
-    //    }
-    //}
+    const _transformCharacter = (char) => {
+        return {
+            id: char.id,
+            name: char.name.length > 50 ? char.name.slice(0, 50) + '...' : char.name,
+            description: char.description ? char.description.length > 230 ? char.description.slice(0, 230) + '...' : char.description : 'No description',
+            thumbnail: char.thumbnail.path + '.' + char.thumbnail.extension,
+            homepage: char.urls[0].url,
+            wiki: char.urls[1].url,
+            comics: char.comics.items//.length === 0 ? char.comics.items = ['No description'] : char.comics.items
+        }
+    }
 
     const _transformComics = (comics) => {
         return {
@@ -60,7 +60,7 @@ const useMarvelService = () => {
         }
     }
 
-    return {loading, error, clearError, getAllComics, getComics}
+    return {loading, error, clearError, getAllCharacters, getCharacter, getAllComics, getComics}
 }
 
 export default useMarvelService;

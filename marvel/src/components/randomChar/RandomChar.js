@@ -59,7 +59,6 @@ const RandomChar = () => {
 
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki} = char;
-    console.log(name);
     let newName = name;
     if (name !== undefined) {
         newName = name.length > 20 ? name.slice(0, 20) + '...' : name;
