@@ -1,32 +1,26 @@
-@import '../../style/variables.scss';
+@import '../../../style/variables.scss';
 
-.comic {
+.single-comic {
     display: grid;
     grid-template-columns: 293px 550px auto;
     column-gap: 50px;
-    //position: relative;
     margin-top: 50px;
-    &__img {
+    align-items: start;
+    &__char-img {
         width: 293px;
-        height: 450px;
+        height: 293px;
     }
     &__name {
         font-size: 22px;
         font-weight: 700;
         line-height: 26px;
+        text-transform: uppercase;
     }
     &__descr {
+        margin-top: 25px;
         font-size: 18px;
         font-weight: 400;
-        line-height: 24px;
-        margin-top: 25px;
-    }
-    &__price {
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 28px;
-        color: $main-color;
-        margin-top: 25px;
+        line-height: 21px;
     }
     &__back {
         //position: absolute;
