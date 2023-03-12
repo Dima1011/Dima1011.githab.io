@@ -2,9 +2,7 @@ import {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import useMarvelService from '../../services/MarvelService';
-import Spinner from '../spinner/Spinner';
-import ErrorMessage from '../errorMessage.js/ErrorMessage';
-import Skeleton from '../skeleton/Skeleton';
+import setContent from '../../utils/setContent';
 
 import './charInfo.scss';
 //import thor from '../../resources/img/thor.jpeg';
@@ -13,10 +11,11 @@ const CharInfo = (props) => {
 
     const [char, setChar] = useState(null);
 
-    const {loading, error, getCharacter, clearError, process, setProcess} = useMarvelService();
+    const {getCharacter, clearError, process, setProcess} = useMarvelService();
 
     useEffect(() =>{
         updateChar();
+        // eslint-disable-next-line
     }, [props.charId])
 
     const updateChar = () => {
@@ -34,27 +33,6 @@ const CharInfo = (props) => {
         setChar(char); 
     }
 
-    const setContent = (process, char) => {
-        switch (process) {
-            case 'waiting':
-                return <Skeleton/>;
-            case 'loading':
-                return <Spinner/>;
-            case 'confirmed':
-                return <View char={char}/>;
-            case 'error':
-                return <ErrorMessage/>;
-            default:
-                throw new Error('Unexpected process state');
-        }
-    }
-
-    return (
-        <div className="char__info">
-            {setContent(process, char)}                
-        </div>    
-    )
-
     //const skeleton = char || loading || error ? null : <Skeleton/>;
     //const spinner = loading ? <Spinner/> : null;
     //const content = !(loading || error || !char) ? <View char={char}/> : null;
@@ -67,11 +45,17 @@ const CharInfo = (props) => {
     //        {spinner}
     //        {content}                
     //    </div>    
-    //)   
+    //)
+    
+    return (
+        <div className="char__info">
+            {setContent(process, View, char)}                
+        </div>    
+    )
 }
 
-const View = ({char}) => {
-    const {name, description, thumbnail, homepage, wiki, comics} = char;
+const View = ({data}) => {
+    const {name, description, thumbnail, homepage, wiki, comics} = data;
 
     const newName = name.length > 32 ? name.slice(0, 32) : name;
     let btnsStyle = {'margin-top' : '37px'};
